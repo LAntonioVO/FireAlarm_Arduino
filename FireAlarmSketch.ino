@@ -51,9 +51,9 @@ void loop() {
     }
     //Si encuentra que la temperatura es
     // mayor o igual que 60°C o que detecta 
-    // mas de 25% de humo, activa la alerta
+    // mas de 20% de humo, activa la alerta
     // de incendio.
-    if(alertaManual == 0|| tempC > 60 || gas>25){
+    if(alertaManual == 0|| tempC >= 60 || gas>=20){
       activarAlarm();    
       lcd.setCursor(0,0);
   	  lcd.print("--ALERTA FUEGO--");
@@ -83,18 +83,18 @@ void activarAlarm(){
 	digitalWrite(LED,1);
   	delay(100);
   	digitalWrite(LED,0);
-  	int tono = 0;
-    if(gas<25&&tempC<50)
-      tono = 420;
-  	else
-  	if(gas>=25&&tempC<50)
-  		tono = gas*4;
-  	else
-  		tono = tempC*2;
-  	tone(PIEZO,tono,1000);//,tempC*2-50,1000);
+  	int tono = 420;
+  	if(tempC >=60 && tempC <75)
+      tono = 520;
+    if(tempC >= 75 && tempC <95)
+      tono = 620;
+    if(tempC >= 95  && tempC <=125)
+      tono = 720;
+    
+  	tone(PIEZO,tono,1000);
   	delay(100);
     noTone(PIEZO);
-  if((tempC>75 || gas> 40) && estadoServo == 0){
+  if((tempC>75 || gas> 30) && estadoServo == 0){
       miServo.write(180);
     	estadoServo == 1;
   }
