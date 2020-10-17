@@ -1,4 +1,3 @@
 # FireAlarm_Arduino
-Desarrollo de un simulador de alarma para incendios pequeña en Arduino
+Desarrollo de un simulador de alarma para incendios en Arduino
 -----------------------------------------------------------------
-Be Free Develop Free - AV
